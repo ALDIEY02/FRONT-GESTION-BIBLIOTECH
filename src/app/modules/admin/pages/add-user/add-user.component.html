@@ -1,0 +1,42 @@
+<div *ngIf="modal.showAddUserModal" (click)="goBack()" class="fixed flex justify-center items-center left-0 top-0 w-full h-full z-30 bg-[#000000c2]">
+    <div class="card p-4 w-full max-w-lg" (click)="$event.stopPropagation()">
+      <h3 class="text-[#392c7d] w-full font-semibold text-base uppercase py-2">Add User</h3>
+      <hr />
+      <form [formGroup]="addUserForm" (submit)="onAddUser()">
+        <div class="flex flex-col">
+          <label class="font-semibold text-sm mb-2" for="name">Name <span class="text-red-500">*</span></label>
+          <input id="name" type="text" placeholder="Name" formControlName="name" class="px-5 py-2 w-full border border-[#babcbe] rounded-md outline-blue-500" />
+        </div>
+        <div class="flex flex-col">
+          <label class="font-semibold text-sm mb-2" for="email">Email <span class="text-red-500">*</span></label>
+          <input id="email" type="email" placeholder="Email" formControlName="email" class="px-5 py-2 w-full border border-[#babcbe] rounded-md outline-blue-500" />
+        </div>
+        <div class="flex flex-col">
+          <label class="font-semibold text-sm mb-2" for="password">Password <span class="text-red-500">*</span></label>
+          <div class="relative">
+              <input id="password" [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password" class="px-5 py-2 w-full border border-[#babcbe] rounded-md outline-blue-500" />
+              <span class="absolute top-0 right-0 mt-3 mr-3" (click)="togglePasswordVisibility()">
+                  <i class="fas fa-eye cursor-pointer" *ngIf="!showPassword"></i>
+                  <i class="fas fa-eye-slash cursor-pointer" *ngIf="showPassword"></i>
+              </span>
+          </div>
+      </div>
+      <div class="flex flex-col">
+          <label class="font-semibold text-sm mb-2" for="confirmerpassword">Confirmer Password <span class="text-red-500">*</span></label>
+          <input id="Confirmerpassword" [type]="showPassword ? 'text' : 'password'" placeholder="Confirmer Password" formControlName="password_confirmation" class="px-5 py-2 w-full border border-[#babcbe] rounded-md outline-blue-500" />
+      </div>
+      
+      
+        <div class="flex flex-col">
+            <label class="font-semibold text-sm mb-2" for="role">Role <span class="text-red-500">*</span></label>
+
+            <select id="role" formControlName="role_id" class="px-5 py-2 w-full border border-[#babcbe] rounded-md outline-blue-500" >
+              <option value="" placeholder="choisir un role">choisir un role</option>
+                <option *ngFor="let role of roles" [value]="role.id">{{role.libelle}}</option>
+              </select>
+                </div>
+        <button [disabled]="!addUserForm.valid" type="submit" class="px-6 py-2 border border-[#babcbe] rounded-lg outline-none bg-[#392c7d] disabled:bg-slate-300 text-white">Create</button>
+      </form>
+    </div>
+  </div>
+  

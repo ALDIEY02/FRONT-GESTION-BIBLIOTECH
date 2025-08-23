@@ -1,0 +1,56 @@
+ 
+ <div>
+  <a
+    [routerLink]="'/admin/gestion-users/user-create'"
+    class="px-6 py-2 border border-[#babcbe] rounded-lg outline-none bg-[#392c7d] text-white"
+  >
+    add
+  </a>
+</div>
+<div>
+  <input
+  (input)="search($event)"
+  [value]="searchTerm"
+  (keydown)="onSearch($event)"
+  type="search"
+  placeholder="Search users"
+  class="px-4 py-1 pl-10 border border-[#e9ecef] rounded-lg outline-none"
+/>
+
+<table class="responstable">
+  
+  <tr>
+    <th>NAME</th>
+    <th data-th="Driver details"><span>EMAIL</span></th>
+    <th>ROLE</th>
+    <th></th>
+   
+  </tr>
+  
+  <tr *ngFor="let user of classes 
+  | paginate
+        : {
+            itemsPerPage: pagination.itemsPerPage,
+            currentPage: pagination.currentPage,
+            totalItems: pagination.totalItems
+          }
+">
+  <td class="border border-slate-700 ...">{{user.name}}</td>
+  <td class="border border-slate-700 ...">{{user.email}}</td>
+  <td class="border border-slate-700 ...">{{user.role.libelle}}</td>
+  <td>
+      <button>
+        <!-- Utilisation de Font Awesome -->
+        <i class="material-icons bg-yellow-200">edit</i> <!-- Utilisation de Material Icons -->
+      </button>
+      <button>
+         <!-- Utilisation de Font Awesome -->
+        <i class="material-icons red-600" (click)="delete(user.id)">delete</i> <!-- Utilisation de Material Icons -->
+      </button>
+    </td>
+
+</tr>
+</table>
+<div class="flex p-2 justify-center items-center mt-4">
+  <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
+</div>
