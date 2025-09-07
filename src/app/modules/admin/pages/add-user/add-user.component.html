@@ -1,42 +1,82 @@
-<div *ngIf="modal.showAddUserModal" (click)="goBack()" class="fixed flex justify-center items-center left-0 top-0 w-full h-full z-30 bg-[#000000c2]">
-    <div class="card p-4 w-full max-w-lg" (click)="$event.stopPropagation()">
-      <h3 class="text-[#392c7d] w-full font-semibold text-base uppercase py-2">Add User</h3>
-      <hr />
-      <form [formGroup]="addUserForm" (submit)="onAddUser()">
-        <div class="flex flex-col">
-          <label class="font-semibold text-sm mb-2" for="name">Name <span class="text-red-500">*</span></label>
-          <input id="name" type="text" placeholder="Name" formControlName="name" class="px-5 py-2 w-full border border-[#babcbe] rounded-md outline-blue-500" />
-        </div>
-        <div class="flex flex-col">
-          <label class="font-semibold text-sm mb-2" for="email">Email <span class="text-red-500">*</span></label>
-          <input id="email" type="email" placeholder="Email" formControlName="email" class="px-5 py-2 w-full border border-[#babcbe] rounded-md outline-blue-500" />
-        </div>
-        <div class="flex flex-col">
-          <label class="font-semibold text-sm mb-2" for="password">Password <span class="text-red-500">*</span></label>
-          <div class="relative">
-              <input id="password" [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password" class="px-5 py-2 w-full border border-[#babcbe] rounded-md outline-blue-500" />
-              <span class="absolute top-0 right-0 mt-3 mr-3" (click)="togglePasswordVisibility()">
-                  <i class="fas fa-eye cursor-pointer" *ngIf="!showPassword"></i>
-                  <i class="fas fa-eye-slash cursor-pointer" *ngIf="showPassword"></i>
-              </span>
-          </div>
-      </div>
-      <div class="flex flex-col">
-          <label class="font-semibold text-sm mb-2" for="confirmerpassword">Confirmer Password <span class="text-red-500">*</span></label>
-          <input id="Confirmerpassword" [type]="showPassword ? 'text' : 'password'" placeholder="Confirmer Password" formControlName="password_confirmation" class="px-5 py-2 w-full border border-[#babcbe] rounded-md outline-blue-500" />
-      </div>
-      
-      
-        <div class="flex flex-col">
-            <label class="font-semibold text-sm mb-2" for="role">Role <span class="text-red-500">*</span></label>
-
-            <select id="role" formControlName="role_id" class="px-5 py-2 w-full border border-[#babcbe] rounded-md outline-blue-500" >
-              <option value="" placeholder="choisir un role">choisir un role</option>
-                <option *ngFor="let role of roles" [value]="role.id">{{role.libelle}}</option>
-              </select>
-                </div>
-        <button [disabled]="!addUserForm.valid" type="submit" class="px-6 py-2 border border-[#babcbe] rounded-lg outline-none bg-[#392c7d] disabled:bg-slate-300 text-white">Create</button>
-      </form>
+<div *ngIf="modal.showAddUserModal" (click)="goBack()" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
+  <div class="bg-white rounded-xl shadow-lg w-full max-w-xl p-6 animate-fade-in" (click)="$event.stopPropagation()">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-semibold text-[#392c7d] flex items-center gap-2">
+        <i class="pi pi-user-plus text-[#392c7d]"></i>
+        Ajouter un utilisateur
+      </h2>
+      <button class="text-gray-400 hover:text-red-500 text-lg" (click)="goBack()">
+        <i class="pi pi-times"></i>
+      </button>
     </div>
+    <hr class="mb-4" />
+
+    <form [formGroup]="addUserForm" (ngSubmit)="onAddUser()" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-medium text-sm mb-1" for="name">Nom <span class="text-red-500">*</span></label>
+          <input type="text" id="nom" formControlName="nom"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#392c7d] focus:outline-none"
+            placeholder="Nom " />
+        </div>
+        <div>
+          <label class="block font-medium text-sm mb-1" for="prenom">Prenom  <span class="text-red-500">*</span></label>
+          <input type="email" id="email" formControlName="prenom"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#392c7d] focus:outline-none"
+            placeholder="prenom" />
+        </div>
+      </div>
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-medium text-sm mb-1" for="numero">Numero <span class="text-red-500">*</span></label>
+          <input type="text" id="numero" formControlName="numero"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#392c7d] focus:outline-none"
+            placeholder="Numero complet" />
+        </div>
+        <div>
+          <label class="block font-medium text-sm mb-1" for="email">Email <span class="text-red-500">*</span></label>
+          <input type="email" id="email" formControlName="email"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#392c7d] focus:outline-none"
+            placeholder="exemple@domaine.com" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-medium text-sm mb-1" for="password">Mot de passe <span class="text-red-500">*</span></label>
+          <div class="relative">
+            <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#392c7d] focus:outline-none"
+              placeholder="Mot de passe" />
+            <span class="absolute inset-y-0 right-3 flex items-center text-gray-500 cursor-pointer"
+              (click)="togglePasswordVisibility()">
+              <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"></i>
+            </span>
+          </div>
+        </div>
+        <div>
+          <label class="block font-medium text-sm mb-1" for="confirmerpassword">Confirmation <span class="text-red-500">*</span></label>
+          <input [type]="showPassword ? 'text' : 'password'" id="confirmerpassword" formControlName="password_confirmation"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#392c7d] focus:outline-none"
+            placeholder="Confirmer le mot de passe" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-medium text-sm mb-1" for="role">Rôle <span class="text-red-500">*</span></label>
+        <select id="role" formControlName="profilNom"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-sm focus:ring-2 focus:ring-[#392c7d] focus:outline-none">
+          <option value="" disabled selected hidden>Choisir un rôle</option>
+          <option *ngFor="let role of Profils" >{{ role }}</option>
+        </select>
+      </div>
+
+      <div class="pt-4 flex justify-end">
+        <button type="submit" [disabled]="!addUserForm.valid"
+          class="bg-[#392c7d] text-white px-6 py-2 rounded-md hover:bg-[#2c2466] transition-all disabled:bg-gray-400">
+          Créer l'utilisateur
+        </button>
+      </div>
+    </form>
   </div>
-  
+</div>

@@ -1,0 +1,8 @@
+/* register.component.css */
+:host ::ng-deep .mat-form-field {
+  font-family: 'Poppins', sans-serif;
+}
+
+:host {
+  background-color: #f3f4f6;
+}

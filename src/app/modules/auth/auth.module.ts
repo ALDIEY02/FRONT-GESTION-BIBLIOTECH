@@ -11,8 +11,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { RegisterComponent } from './pages/register/register.component';
 @NgModule({
-  declarations: [LoginComponent, LogoutComponent],
+  declarations: [LoginComponent, LogoutComponent,RegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

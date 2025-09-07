@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../schemas/User';
 import { Observable, of } from 'rxjs';
-import { Role } from '../../schemas/Role';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +17,8 @@ export class AuthService {
   }
 
   login({ email, password }: { email: string | null; password: string | null }): Observable<User | null> {
-    const roleAdmin = { id: 1, libelle: 'admin' };
-    const roleLecteur = { id: 2, libelle: 'lecteur' };
+    const roleAdmin = { id: 1, role: 'admin' };
+    const roleLecteur = { id: 2, role: 'lecteur' };
   
     const mockAdmin: User = {
       id: 1,
@@ -59,14 +58,14 @@ export class AuthService {
         id: 1,
         email: 'admin@biblio.com',
         name: 'Administrateur',
-        role: { id: 1, libelle: 'admin' },
+        role: { id: 1, role: 'admin' },
       };
     } else if (token === 'fake-lecteur-token') {
       this.user = {
         id: 2,
         email: 'lecteur@biblio.com',
         name: 'Lecteur Simple',
-        role: { id: 2, libelle: 'lecteur' },
+        role: { id: 2, role: 'lecteur' },
       };
     } else {
       this.user = null;

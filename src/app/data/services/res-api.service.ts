@@ -20,7 +20,7 @@ export interface ApiResponse<T> {
 export class ResApiService<T> {
   public fetching = false;
   public updating = false;
-  public baseUrl: string = 'http://localhost:8000/api';
+  public baseUrl: string = 'http://localhost:8081/api';
   public url = '';
 
   constructor(private http: HttpClient, private endpoint: string) {

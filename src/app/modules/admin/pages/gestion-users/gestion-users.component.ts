@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faAdd, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/data/schemas/User';
-import { Userservice } from "src/app/data/services/user.service";
 import { UsersService } from 'src/app/data/services/users.service';
 import { smoothScrollTo } from 'src/utils';
 import Swal from 'sweetalert2';

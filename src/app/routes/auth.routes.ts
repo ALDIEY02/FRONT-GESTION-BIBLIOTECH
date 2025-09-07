@@ -5,7 +5,7 @@ import { AuthLayoutComponent } from 'src/app/components/auth-layout/auth-layout.
 const authRoutes: Routes = [
   {
     path: 'auth',
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     component: AuthLayoutComponent,
     loadChildren: () =>
       import('src/app/modules/auth/auth.module').then((m) => m.AuthModule),

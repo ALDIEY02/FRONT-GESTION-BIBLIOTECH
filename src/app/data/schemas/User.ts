@@ -8,7 +8,8 @@
 //    // teacher: TeacherInfos | null;
 //   }
 
-import { Role } from "./Role";
+import { Profil } from "./Role";
+
 
  
 export interface User {
@@ -16,6 +17,6 @@ export interface User {
     email: string;
     profil?:string
     name: string;
-    role: Role;
+    role: Profil;
   }
   

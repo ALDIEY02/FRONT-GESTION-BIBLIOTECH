@@ -22,7 +22,7 @@ export class NavBarComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    const role = this.authService.user?.role.libelle as 'admin' | 'lecteur';
+    const role = this.authService.user?.role.role as 'admin' | 'lecteur';
 
     const roleBasedLinks = {
       admin: [

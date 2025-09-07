@@ -12,7 +12,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   // Si l'utilisateur est connecté
   if (user) {
-    const role = user.role?.libelle ?? '';
+    const role = user.role?.role ?? '';
     const expectedRoute = getRoute(role, state.url);
 
     if (state.url === '/auth/logout' || state.url === '/notifications') return true;

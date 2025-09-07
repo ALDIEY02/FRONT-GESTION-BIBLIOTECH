@@ -1,0 +1,54 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+  <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-8 space-y-6">
+    <h2 class="text-3xl font-bold text-center text-indigo-700">Créer un compte lecteur</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="space-y-4">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="nom" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Prénom</mat-label>
+          <input matInput formControlName="prenom" required>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Numéro de téléphone</mat-label>
+        <input matInput formControlName="numero" required type="tel">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" required>
+      </mat-form-field>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Mot de passe</mat-label>
+          <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" required>
+          <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Confirmation du mot de passe</mat-label>
+          <input [type]="hide ? 'password' : 'text'" matInput formControlName="password_confirmation" required>
+        </mat-form-field>
+      </div>
+
+      <button mat-raised-button color="primary" type="submit" class="w-full py-2" [disabled]="!registerForm.valid">
+        S'inscrire
+      </button>
+    </form>
+
+    <div class="text-sm text-center pt-2">
+      Vous avez déjà un compte ?
+      <a routerLink="/login" class="text-indigo-600 hover:underline font-medium">Se connecter</a>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-export interface Role{
+export interface Profil{
 id:number,
-libelle:string
+role:string
 }

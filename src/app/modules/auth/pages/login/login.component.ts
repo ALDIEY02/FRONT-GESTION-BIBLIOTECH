@@ -61,7 +61,7 @@ onSubmit() {
       return;
     }
 
-    const role = user.role.libelle;
+    const role = user.role.role;
 
     if (role === 'admin') {
       this.router.navigate(['/admin']);
@@ -71,6 +71,9 @@ onSubmit() {
       this.router.navigate(['/']);
     }
   });
+}
+goToregister(){
+   this.router.navigate(['auth/register']);
 }
 
 }
